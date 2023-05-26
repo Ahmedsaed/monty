@@ -2,15 +2,15 @@
 
 /**
  * main - entry point to monty
- * 
+ *
  * @argc: argument count
  * @argv: argument list
- * 
- * Return: int 
+ *
+ * Return: int
  */
-int main(int UNUSED argc, char UNUSED *argv[])
+int main(UNUSED int argc, UNUSED char *argv[])
 {
-    printf("Hello");
+	print_str("Hello\n");
 
-    return (0);
+	return (0);
 }
