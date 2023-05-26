@@ -3,8 +3,10 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <fcntl.h>
 
 #define UNUSED __attribute__((unused))
+#define BUFFER_SIZE 1024
 
 /* string functions */
 size_t _strlen(char *s);
@@ -34,6 +36,25 @@ void *_recalloc(void *ptr, unsigned int old_size,
 void print_str(char *s);
 void print_err(char *s);
 
+/* file functions */
+int process_file(char *file, int *fd);
+
+/* error handlers */
+void error_file(char *file);
+
+/* getline functions */
+int _getline(char **lineptr, size_t *n, int stream);
+
+/* Type definations */
+typedef struct stack_s stack_t;
+
+typedef void (*push_back_fn)(stack_t *stack, int value);
+typedef void (*push_front_fn)(stack_t *stack, int value);
+typedef int (*pop_back_fn)(stack_t *stack);
+typedef int (*pop_front_fn)(stack_t *stack);
+typedef int (*front_fn)(stack_t *stack);
+typedef int (*back_fn)(stack_t *stack);
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -43,12 +64,18 @@ void print_err(char *s);
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO
  */
-typedef struct stack_s
+struct stack_s
 {
 	int n;
 	struct stack_s *prev;
 	struct stack_s *next;
-} stack_t;
+	push_back_fn push_back;
+    push_front_fn push_front;
+    pop_back_fn pop_back;
+    pop_front_fn pop_front;
+    front_fn front;
+    back_fn back;
+};
 
 /**
  * struct instruction_s - opcode and its function

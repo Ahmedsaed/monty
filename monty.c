@@ -8,9 +8,20 @@
  *
  * Return: int
  */
-int main(UNUSED int argc, UNUSED char *argv[])
+int main(int argc, char *argv[])
 {
-	print_str("Hello\n");
+	int fd;
+
+	if (argc < 3)
+	{
+		print_err("USAGE: monty file\n");
+		return (EXIT_FAILURE);
+	}
+
+	if (process_file(argv[1], &fd) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+
+
 
 	return (0);
 }
