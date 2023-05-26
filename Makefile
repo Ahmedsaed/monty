@@ -6,6 +6,7 @@ SRC_DIR := .
 INC_DIR := .
 OBJ_DIR := objects
 TEST_DIR := tests
+TMP_DIR := .tmp
 
 # Make flags
 MAKEFLAGS += -s
@@ -25,7 +26,7 @@ EXECUTABLE := $(BUILD_DIR)/$(APPLICATION)
 INTEGRATION_TESTS_FILES = $(patsubst $(TEST_DIR)/integration/%.py,%,$(wildcard $(TEST_DIR)/integration/*.py))
 UNIT_TEST_FILES = $(patsubst %.c, %, $(notdir $(wildcard $(TEST_DIR)/unit/*.c)))
 
-all: clear_screen build run
+all: clear_screen check_style build run
 
 build: setup_dirs $(EXECUTABLE)
 	@$(MAKE) announce MESSAGE="Compiled successfully"
@@ -39,6 +40,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 -include $(DEPS)
 
 run:
+	@$(MAKE) announce MESSAGE="Running $(APPLICATION)"
 	@./$(EXECUTABLE)
 
 setup_dirs:
@@ -47,6 +49,7 @@ setup_dirs:
 	@mkdir -p ./$(TEST_DIR)
 	@mkdir -p ./$(TEST_DIR/integration)
 	@mkdir -p ./$(TEST_DIR/unit)
+	@mkdir -p ./$(TMP_DIR)
 
 announce:
 	@echo "------------------------------------------"
@@ -59,3 +62,10 @@ clear_screen:
 clean:
 	rm -rf $(OBJ_DIR)
 	rm -rf $(BUILD_DIR)
+
+check_style:
+	@$(MAKE) announce MESSAGE="Checking code style"
+	@betty-style --allow-global-variables --no-summary ${SOURCE_FILES} ${HEADER_FILES}
+	@betty-doc ${SOURCE_FILES} ${HEADER_FILES} > $(TMP_DIR)/betty-doc.txt && \
+		(make announce MESSAGE="No styling issuse found" && exit 0) || \
+		(cat $(TMP_DIR)/betty-doc.txt && exit 1)
