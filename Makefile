@@ -26,7 +26,7 @@ EXECUTABLE := $(BUILD_DIR)/$(APPLICATION)
 INTEGRATION_TESTS_FILES = $(patsubst $(TEST_DIR)/integration/%.py,%,$(wildcard $(TEST_DIR)/integration/*.py))
 UNIT_TEST_FILES = $(patsubst %.c, %, $(notdir $(wildcard $(TEST_DIR)/unit/*.c)))
 
-all: clear_screen check_style build run
+all: clear_screen check_style build run check_memory
 
 build: setup_dirs $(EXECUTABLE)
 	@$(MAKE) announce MESSAGE="Compiled successfully"
@@ -41,7 +41,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 run:
 	@$(MAKE) announce MESSAGE="Running $(APPLICATION)"
-	@./$(EXECUTABLE)
+	@./$(EXECUTABLE) $(TEST_DIR)/bytecodes/00.m
 
 setup_dirs:
 	@mkdir -p $(OBJ_DIR)
@@ -69,3 +69,10 @@ check_style:
 	@betty-doc ${SOURCE_FILES} ${HEADER_FILES} > $(TMP_DIR)/betty-doc.txt && \
 		(make announce MESSAGE="No styling issuse found" && exit 0) || \
 		(cat $(TMP_DIR)/betty-doc.txt && exit 1)
+
+check_memory:
+	@$(MAKE) announce MESSAGE="Checking memory leaks"
+	(valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 \
+	./$(EXECUTABLE) $(TEST_DIR)/bytecodes/00.m > ${TMP_DIR}/$$file.vg 2>&1)  && \
+	(make announce MESSAGE="No memory leaks found" && exit 0) || \
+	(echo "Error: memory leak found" && cat ${TMP_DIR}/$$file.vg && exit 1) \
