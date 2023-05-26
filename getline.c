@@ -141,14 +141,14 @@ int alloc_buffer(char **buffer, int old_size, int new_size)
 	{
 		*buffer = _calloc(new_size + 1, sizeof(char));
 		if (*buffer == NULL)
-			return (-1);
+			error_malloc();
 		return (0);
 	}
 	else
 	{
 		*buffer = _recalloc(*buffer, old_size, new_size + 1);
 		if (*buffer == NULL)
-			return (-1);
+			error_malloc();
 		return (0);
 	}
 }

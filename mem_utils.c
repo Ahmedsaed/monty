@@ -44,7 +44,7 @@ void *_realloc(void *ptr, unsigned int old_size,
 	p = malloc(new_size);
 
 	if (p == NULL)
-		return (NULL);
+		error_malloc();
 
 	size = old_size < new_size ? old_size : new_size;
 
@@ -91,9 +91,11 @@ void *_calloc(size_t count, size_t size)
 	size_t i;
 	void *ptr = malloc(count * size);
 
-	if (ptr != NULL)
-		for (i = 0; i < count * size; i++)
-			*((char *)ptr + i) = 0;
+	if (ptr == NULL)
+		error_malloc();
+
+	for (i = 0; i < count * size; i++)
+		*((char *)ptr + i) = 0;
 
 	return (ptr);
 }
@@ -123,7 +125,7 @@ void *_recalloc(void *ptr, unsigned int old_size,
 	p = malloc(new_size);
 
 	if (p == NULL)
-		return (NULL);
+		error_malloc();
 
 	size = old_size < new_size ? old_size : new_size;
 

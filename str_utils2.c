@@ -60,11 +60,11 @@ char *_strdup(char *s)
 
 	copy = malloc(len * sizeof(char));
 
-	if (copy != NULL)
-	{
-		for (i = 0; i < len; i++)
-			copy[i] = s[i];
-	}
+	if (copy == NULL)
+		error_malloc();
+
+	for (i = 0; i < len; i++)
+		copy[i] = s[i];
 
 	return (copy);
 }

@@ -15,8 +15,10 @@ char *_substr(char *src, int m, int n)
 	char *ptr;
 
 	ptr = (char *)malloc(sizeof(char) * (len + 2));
-	m--;
+	if (ptr == NULL)
+		error_malloc();
 
+	m--;
 	for (i = m; i < n && (src[i] != '\0'); i++)
 		ptr[i - m] = src[i];
 
