@@ -76,5 +76,7 @@ int run_instruction(char *line_buffer)
 	free(opcode);
 	if (value != NULL)
 		free(value);
+
+	line_number++;
 	return (rn);
 }
