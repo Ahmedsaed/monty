@@ -2,3 +2,5 @@ build
 objects
 .vscode
 *tmp*
+/tests/monty
+__pycache__
