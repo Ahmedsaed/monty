@@ -2,7 +2,7 @@
 
 /* global variables*/
 int line_number = 1;
-stack_t stack;
+stack_t *stack = NULL;
 
 /* helper functions */
 int run_instruction(char *line_buffer);
@@ -30,7 +30,6 @@ int main(int argc, char *argv[])
 	if (process_file(argv[1], &fd) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 
-	init_stack(&stack);
 	while (true)
 	{
 		if (_getline(&line_buffer, &line_size, fd) != -1)

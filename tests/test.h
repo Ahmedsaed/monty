@@ -2,9 +2,9 @@
 #define TEST_H
 
 #include <stdio.h>
-#include "../stack.h"
+#include "../list.h"
 
 int line_number = 1;
-stack_t stack;
+stack_t *stack = NULL;
 
 #endif /* TEST_H */

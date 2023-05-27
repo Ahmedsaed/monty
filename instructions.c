@@ -19,7 +19,7 @@ int op_push(char *value)
 
 	n = _atoi(value);
 
-	stack.push_back(&stack, n);
+	push_front(&stack, n);
 
 	return (0);
 }
@@ -31,15 +31,16 @@ int op_push(char *value)
  */
 int op_pall(void)
 {
-	while (stack.front(&stack) != -1)
+	stack_t *current = stack;
+
+	while (front(&current) != -1)
 	{
-		char *s = _itoa(stack.front(&stack));
+		char *str = _itoa(front(&current));
 
-		print_str(s);
+		print_str(str);
 		print_str("\n");
-		stack.pop_front(&stack);
-
-		free(s);
+		current = current->next;
+		free(str);
 	}
 
 	return (0);
