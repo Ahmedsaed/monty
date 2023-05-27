@@ -17,7 +17,7 @@ int run_instruction(char *line_buffer);
  */
 int main(int argc, char *argv[])
 {
-	int fd;
+	int fd, rn = 0;
 	size_t line_size;
 	char *line_buffer = NULL;
 
@@ -36,14 +36,17 @@ int main(int argc, char *argv[])
 		if (_getline(&line_buffer, &line_size, fd) != -1)
 		{
 			if (run_instruction(line_buffer) == -1)
-				return (EXIT_FAILURE);
+			{
+				rn = EXIT_FAILURE;
+				break;
+			}
 		}
 		else
 			break;
 	}
 
 	free(line_buffer);
-	return (0);
+	return (rn);
 }
 
 /**
@@ -61,7 +64,7 @@ int run_instruction(char *line_buffer)
 	parse_instruction(line_buffer, &opcode, &value);
 
 	if (opcode == NULL)
-		return (-1);
+		return (0);
 
 	if (_strcmp(opcode, "push") == 0)
 		rn = op_push(value);
