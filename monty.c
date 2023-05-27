@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	size_t line_size;
 	char *line_buffer = NULL;
 
-	if (argc < 2)
+	if (argc != 2)
 	{
 		print_err("USAGE: monty file\n");
 		return (EXIT_FAILURE);
