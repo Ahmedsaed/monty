@@ -1,4 +1,5 @@
 #include "monty.h"
+#include "string.h"
 
 /* local helper function headers */
 int update_buffer(char **buffer,

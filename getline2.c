@@ -1,4 +1,5 @@
 #include "monty.h"
+#include "string.h"
 
 /**
  * free_buffer - frees the memory allocated for getline

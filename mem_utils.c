@@ -1,4 +1,5 @@
-#include "monty.h"
+#include "mem.h"
+#include "error.h"
 
 /**
  * _memcpy - copies memory block

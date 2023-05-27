@@ -1,6 +1,9 @@
 #ifndef STACK_H
 #define STACK_H
 
+#include <unistd.h>
+#include <stdlib.h>
+
 /* type definations */
 typedef struct stack_s stack_t;
 

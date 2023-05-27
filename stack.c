@@ -1,4 +1,4 @@
-#include "monty.h"
+#include "stack.h"
 
 /* stack and queue functions */
 void init_stack(stack_t *stack);

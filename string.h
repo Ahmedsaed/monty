@@ -2,6 +2,8 @@
 #define STRING_H
 
 #include <unistd.h>
+#include <stdlib.h>
+#include "error.h"
 
 /* string functions */
 size_t _strlen(char *s);

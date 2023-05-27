@@ -6,6 +6,7 @@
 #include "mem.h"
 #include "error.h"
 #include "stack.h"
+#include "instructions.h"
 
 #define UNUSED __attribute__((unused))
 #define BUFFER_SIZE 1024
@@ -15,6 +16,7 @@
 
 /* global variables */
 extern int line_number;
+extern stack_t stack;
 
 /* file functions */
 int process_file(char *file, int *fd);
