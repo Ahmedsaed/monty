@@ -55,6 +55,7 @@ int main(int argc, char *argv[])
  */
 int run_instruction(char *line_buffer)
 {
+	int rn = 0;
 	char *opcode = NULL, *value = NULL;
 
 	parse_instruction(line_buffer, &opcode, &value);
@@ -63,42 +64,17 @@ int run_instruction(char *line_buffer)
 		return (-1);
 
 	if (_strcmp(opcode, "push") == 0)
-	{
-		int n;
-
-		if (is_numeric(value) == 0)
-		{
-			error_instruction(value);
-			free(opcode);
-			free(value);
-			return (-1);
-		}
-
-		n = _atoi(value);
-
-		stack.push_back(&stack, n);
-	}
+		rn = op_push(value);
 	else if (_strcmp(opcode, "pall") == 0)
-	{
-		while (stack.front(&stack) != -1)
-		{
-			char *s = _itoa(stack.front(&stack));
-
-			print_str(s);
-			print_str("\n");
-			stack.pop_front(&stack);
-
-			free(s);
-		}
-	}
+		rn = op_pall();
 	else
 	{
 		error_instruction(opcode);
-		free(opcode);
-		return (-1);
+		rn = -1;
 	}
 
 	free(opcode);
-	free(value);
-	return (0);
+	if (value != NULL)
+		free(value);
+	return (rn);
 }

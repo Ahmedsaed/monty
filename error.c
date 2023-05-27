@@ -27,6 +27,16 @@ void error_instruction(char *opcode)
 }
 
 /**
+ * error_push_value - print error message for unkown instruction opcode
+ */
+void error_push_value(void)
+{
+	print_err("L");
+	print_err(_itoa(line_number));
+	print_err(": usage: push integer\n");
+}
+
+/**
  * error_malloc - print error message when malloc can't allocate memory anymore
  */
 void error_malloc(void)

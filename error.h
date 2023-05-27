@@ -5,5 +5,6 @@
 void error_file(char *file);
 void error_instruction(char *opcode);
 void error_malloc(void);
+void error_push_value(void);
 
 #endif /* ERROR_H */

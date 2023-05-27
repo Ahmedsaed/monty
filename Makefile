@@ -26,7 +26,7 @@ EXECUTABLE := $(BUILD_DIR)/$(APPLICATION)
 INTEGRATION_TESTS_FILES = $(patsubst $(TEST_DIR)/integration/%.py,%,$(wildcard $(TEST_DIR)/integration/*.py))
 UNIT_TEST_FILES = $(patsubst %.c, %, $(notdir $(wildcard $(TEST_DIR)/unit/*.c)))
 
-all: clear_screen check_style build run check_memory
+all: clear_screen check_style build run_tests check_memory
 
 build: setup_dirs $(EXECUTABLE)
 	@$(MAKE) announce MESSAGE="Compiled successfully"
@@ -42,6 +42,28 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 run:
 	@$(MAKE) announce MESSAGE="Running $(APPLICATION)"
 	@./$(EXECUTABLE) $(TEST_DIR)/bytecodes/00.m
+
+integration_tests: $(INTEGRATION_TESTS_FILES)
+
+$(INTEGRATION_TESTS_FILES): %: $(TEST_DIR)/integration/%.py
+	@python $<
+
+unit_tests: $(UNIT_TEST_FILES)
+
+$(UNIT_TEST_FILES): %: $(TEST_DIR)/unit/%.c
+	$(CC) $(filter-out ./monty.c, $(SOURCE_FILES)) $< -o $(TMP_DIR)/$@.o
+	@if ./$(TMP_DIR)/$@.o 2>&1 >/dev/null; then \
+		echo "Test $@ passed"; \
+	else \
+		echo "Test $@ failed"; \
+		./$(TMP_DIR)/$@.o; \
+	fi; \
+
+run_tests: setup_dirs
+	@$(MAKE) announce MESSAGE="Running unit tests"
+	@$(MAKE) -k -j 8 unit_tests
+	@$(MAKE) announce MESSAGE="Running integration tests"
+	@$(MAKE) -k -j 8 integration_tests
 
 setup_dirs:
 	@mkdir -p $(OBJ_DIR)
