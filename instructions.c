@@ -86,3 +86,29 @@ int op_pop(void)
 
 	return (0);
 }
+
+/**
+ * op_swap - swaps the top two elements of the stack
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int op_swap(void)
+{
+	int n1, n2;
+
+	if (stack == NULL || stack->next == NULL)
+	{
+		error_swap();
+		return (-1);
+	}
+
+	n1 = front(&stack);
+	pop_front(&stack);
+	n2 = front(&stack);
+	pop_front(&stack);
+
+	push_front(&stack, n1);
+	push_front(&stack, n2);
+
+	return (0);
+}
