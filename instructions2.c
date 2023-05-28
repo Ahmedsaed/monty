@@ -13,7 +13,7 @@ int op_cal(char *opcode)
 
 	if (stack == NULL || stack->next == NULL)
 	{
-		error_short_stack("add");
+		error_short_stack(opcode);
 		return (-1);
 	}
 
