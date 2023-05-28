@@ -39,9 +39,13 @@ int error_instruction(char *opcode)
  */
 void error_push_value(void)
 {
+	char *s = _itoa(line_number);
+
 	print_err("L");
-	print_err(_itoa(line_number));
+	print_err(s);
 	print_err(": usage: push integer\n");
+
+	free(s);
 }
 
 /**
@@ -58,7 +62,11 @@ void error_malloc(void)
  */
 void error_pint(void)
 {
+	char *s = _itoa(line_number);
+
 	print_err("L");
-	print_err(_itoa(line_number));
+	print_err(s);
 	print_err(": can't pint, stack empty\n");
+
+	free(s);
 }
