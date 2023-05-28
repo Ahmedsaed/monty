@@ -20,9 +20,9 @@ def run_test(file):
     # compare the output of your program and correct implementation
     out, err = difflib.SequenceMatcher(None, monty_output, cmonty_output), difflib.SequenceMatcher(None, monty_stderr, cmonty_stderr)
     if out.ratio() == 1 and err.ratio() == 1 and monty_process.returncode == cmonty_process.returncode:
-        print(f"integration test {filename} passed!")
+        print(f"integration test {filename} - {file} passed!")
     else:
-        print(f"integration test {filename} failed.")
+        print(f"integration test {filename} - {file} failed.")
         if err.ratio() != 1:
             print(f"stderr is different")
             print("current error: \n", monty_stderr)

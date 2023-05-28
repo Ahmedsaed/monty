@@ -14,7 +14,7 @@ void parse_instruction(char *line, char **opcode, char **value)
 
 	arg = malloc(sizeof(char) * (_strlen(line) + 1));
 	if (arg == NULL)
-	error_malloc();
+		error_malloc();
 
 	for (i = 0; (c = line[i]) != '\0'; i++)
 	{

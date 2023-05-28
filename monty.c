@@ -81,6 +81,8 @@ int run_instruction(char *line_buffer)
 		rn = op_cal(opcode);
 	else if (_strcmp(opcode, "nop") == 0 || opcode[0] == '#')
 		rn = 0;
+	else if (_strcmp(opcode, "pchar") == 0)
+		rn = op_pchar();
 	else
 	{
 		error_instruction(opcode);

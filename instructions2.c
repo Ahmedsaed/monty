@@ -48,3 +48,35 @@ int op_cal(char *opcode)
 
 	return (0);
 }
+
+/**
+ * op_pchar - prints the char at the top of the stack
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int op_pchar(void)
+{
+	char *c;
+
+	if (stack == NULL)
+	{
+		error_short_stack("pchar");
+		return (-1);
+	}
+
+	if (stack->n < 0 || stack->n > 127)
+	{
+		error_pchar();
+		return (-1);
+	}
+
+	c = malloc(sizeof(char) * 3);
+	c[0] = stack->n;
+	c[1] = '\n';
+	c[2] = '\0';
+
+	print_str(c);
+
+	free(c);
+	return (0);
+}

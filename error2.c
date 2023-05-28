@@ -22,7 +22,10 @@ void error_short_stack(char *opcode)
 	print_err(_itoa(line_number));
 	print_err(": can't ");
 	print_err(opcode);
-	print_err(", stack too short\n");
+	if (_strcmp(opcode, "pchar") == 0)
+		print_err(", stack empty\n");
+	else
+		print_err(", stack too short\n");
 }
 
 /**
@@ -33,4 +36,14 @@ void error_div_zero(void)
 	print_err("L");
 	print_err(_itoa(line_number));
 	print_err(": division by zero\n");
+}
+
+/**
+ * error_pchar - print error message when value is not in ASCII table
+ */
+void error_pchar(void)
+{
+	print_err("L");
+	print_err(_itoa(line_number));
+	print_err(": can't pchar, value out of range\n");
 }

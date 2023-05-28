@@ -98,3 +98,7 @@ check_memory:
 	./$(EXECUTABLE) $(TEST_DIR)/bytecodes/all.m > ${TMP_DIR}/$$file.vg 2>&1)  && \
 	(make announce MESSAGE="No memory leaks found" && exit 0) || \
 	(echo "Error: memory leak found" && cat ${TMP_DIR}/$$file.vg && exit 1) \
+
+setup_stderred:
+	git clone https://github.com/sickill/stderred.git $(TMP_DIR)/stderred
+	cd $(TMP_DIR)/stderred && make
