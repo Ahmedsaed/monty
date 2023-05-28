@@ -1,13 +1,14 @@
 #include "monty.h"
 
 /**
- * op_cal - calculates using the OPCODE of the top two elements of the stack
+ * math_operations - calculates using the OPCODE of the top two
+ * elements of the stack
  *
  * @opcode: opcode to be executed
  *
  * Return: 0 on success, -1 on failure
  */
-int op_cal(char *opcode)
+int math_operations(char *opcode)
 {
 	int result = 0;
 
@@ -105,4 +106,27 @@ int op_pstr(void)
 
 	print_str("\n");
 	return (0);
+}
+
+/**
+ * print_operations - preform print operations on the stack
+ *
+ * @opcode: opcode to be executed
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int print_operations(char *opcode)
+{
+	int rn = 0;
+
+	if (_strcmp(opcode, "pall") == 0)
+		rn = op_pall();
+	else if (_strcmp(opcode, "pint") == 0)
+		rn = op_pint();
+	else if (_strcmp(opcode, "pchar") == 0)
+		rn = op_pchar();
+	else if (_strcmp(opcode, "pstr") == 0)
+		rn = op_pstr();
+
+	return (rn);
 }

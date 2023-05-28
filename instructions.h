@@ -7,8 +7,9 @@ int op_pint(void);
 int op_pop(void);
 int op_swap(void);
 
-int op_cal(char *opcode);
+int math_operations(char *opcode);
 int op_pchar(void);
 int op_pstr(void);
+int print_operations(char *opcode);
 
 #endif /* INSTRUCTIONS_H */

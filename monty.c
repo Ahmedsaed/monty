@@ -66,10 +66,9 @@ int run_instruction(char *line_buffer)
 
 	if (_strcmp(opcode, "push") == 0)
 		rn = op_push(value);
-	else if (_strcmp(opcode, "pall") == 0)
-		rn = op_pall();
-	else if (_strcmp(opcode, "pint") == 0)
-		rn = op_pint();
+	else if (_strcmp(opcode, "pall") == 0 || _strcmp(opcode, "pint") == 0 ||
+		_strcmp(opcode, "pchar") == 0 || _strcmp(opcode, "pstr") == 0)
+		rn = print_operations(opcode);
 	else if (_strcmp(opcode, "pop") == 0)
 		rn = op_pop();
 	else if (_strcmp(opcode, "swap") == 0)
@@ -77,18 +76,11 @@ int run_instruction(char *line_buffer)
 	else if (_strcmp(opcode, "add") == 0 || _strcmp(opcode, "sub") == 0 ||
 		_strcmp(opcode, "div") == 0 || _strcmp(opcode, "mul") == 0 ||
 		_strcmp(opcode, "mod") == 0)
-		rn = op_cal(opcode);
+		rn = math_operations(opcode);
 	else if (_strcmp(opcode, "nop") == 0 || opcode[0] == '#')
 		rn = 0;
-	else if (_strcmp(opcode, "pchar") == 0)
-		rn = op_pchar();
-	else if (_strcmp(opcode, "pstr") == 0)
-		rn = op_pstr();
 	else
-	{
-		error_instruction(opcode);
-		rn = -1;
-	}
+		rn = error_instruction(opcode);
 
 	free(opcode);
 	if (value != NULL)
