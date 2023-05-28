@@ -5,6 +5,6 @@ from integration_helpers import run_test
 
 
 # Define filename
-file = "00-0.m"
+file = "01-0.m"
 
 run_test(f"./tests/bytecodes/{file}")

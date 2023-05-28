@@ -9,13 +9,13 @@ def run_test(file):
 
     # run your compiled monty executable and capture its output
     monty_process = subprocess.run(["./build/monty", file], capture_output=True, text=True)
-    monty_output = monty_process.stdout.strip()
-    monty_stderr = monty_process.stderr.strip()
+    monty_output = monty_process.stdout
+    monty_stderr = monty_process.stderr
 
     # run correct monty implementation and capture its output
     cmonty_process = subprocess.run(["./tests/monty", file], capture_output=True, text=True)
-    cmonty_output = cmonty_process.stdout.strip()
-    cmonty_stderr = cmonty_process.stderr.strip()
+    cmonty_output = cmonty_process.stdout
+    cmonty_stderr = cmonty_process.stderr
 
     # compare the output of your program and correct implementation
     out, err = difflib.SequenceMatcher(None, monty_output, cmonty_output), difflib.SequenceMatcher(None, monty_stderr, cmonty_stderr)

@@ -33,9 +33,9 @@ int op_pall(void)
 {
 	stack_t *current = stack;
 
-	while (front(&current) != -1)
+	while (current != NULL)
 	{
-		char *str = _itoa(front(&current));
+		char *str = _itoa(current->n);
 
 		print_str(str);
 		print_str("\n");
@@ -43,5 +43,28 @@ int op_pall(void)
 		free(str);
 	}
 
+	return (0);
+}
+
+/**
+ * op_pint - prints the value at the top of the stack
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int op_pint(void)
+{
+	char *str;
+
+	if (stack == NULL)
+	{
+		error_pint();
+		return (-1);
+	}
+
+	str = _itoa(front(&stack));
+	print_str(str);
+	print_str("\n");
+
+	free(str);
 	return (0);
 }

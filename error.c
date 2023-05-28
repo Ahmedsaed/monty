@@ -44,3 +44,13 @@ void error_malloc(void)
 	print_err("Error: malloc failed\n");
 	exit(EXIT_FAILURE);
 }
+
+/**
+ * error_pint - print error message when stack is empty
+ */
+void error_pint(void)
+{
+	print_err("L");
+	print_err(_itoa(line_number));
+	print_err(": can't pint, stack empty\n");
+}
