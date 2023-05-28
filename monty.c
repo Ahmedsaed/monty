@@ -75,6 +75,8 @@ int run_instruction(char *line_buffer)
 		rn = op_pop();
 	else if (_strcmp(opcode, "swap") == 0)
 		rn = op_swap();
+	else if (_strcmp(opcode, "add") == 0)
+		rn = op_add();
 	else
 	{
 		error_instruction(opcode);

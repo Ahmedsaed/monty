@@ -12,11 +12,15 @@ void error_pop(void)
 
 
 /**
- * error_swap - print error message when stack is too short
+ * error_short_stack - print error message when stack is too short
+ *
+ * @opcode: opcode
  */
-void error_swap(void)
+void error_short_stack(char *opcode)
 {
 	print_err("L");
 	print_err(_itoa(line_number));
-	print_err(": can't swap, stack too short\n");
+	print_err(": can't ");
+	print_err(opcode);
+	print_err(", stack too short\n");
 }

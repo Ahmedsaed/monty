@@ -98,7 +98,7 @@ int op_swap(void)
 
 	if (stack == NULL || stack->next == NULL)
 	{
-		error_swap();
+		error_short_stack("swap");
 		return (-1);
 	}
 
