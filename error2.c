@@ -15,8 +15,10 @@ void error_pop(void)
  * error_short_stack - print error message when stack is too short
  *
  * @opcode: opcode
+ *
+ * Return: -1
  */
-void error_short_stack(char *opcode)
+int error_short_stack(char *opcode)
 {
 	print_err("L");
 	print_err(_itoa(line_number));
@@ -26,24 +28,34 @@ void error_short_stack(char *opcode)
 		print_err(", stack empty\n");
 	else
 		print_err(", stack too short\n");
+
+	return (-1);
 }
 
 /**
  * error_div_zero - print error message when division by zero
+ *
+ * Return: -1
  */
-void error_div_zero(void)
+int error_div_zero(void)
 {
 	print_err("L");
 	print_err(_itoa(line_number));
 	print_err(": division by zero\n");
+
+	return (-1);
 }
 
 /**
  * error_pchar - print error message when value is not in ASCII table
+ *
+ * Return: -1
  */
-void error_pchar(void)
+int error_pchar(void)
 {
 	print_err("L");
 	print_err(_itoa(line_number));
 	print_err(": can't pchar, value out of range\n");
+
+	return (-1);
 }

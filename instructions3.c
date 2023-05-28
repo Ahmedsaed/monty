@@ -7,13 +7,13 @@
  */
 int op_rotl(void)
 {
-	stack_t *tmp = list;
+	stack_t *tmp = list_head;
 
 	if (tmp == NULL || tmp->next == NULL)
 		return (0);
 
-	push_back(&list, tmp->n);
-	pop_front(&list);
+	push_back(tmp->n);
+	pop_front();
 
 	return (0);
 }
@@ -25,7 +25,7 @@ int op_rotl(void)
  */
 int op_rotr(void)
 {
-	stack_t *tmp = list;
+	stack_t *tmp = list_head;
 	int n;
 
 	if (tmp == NULL || tmp->next == NULL)
@@ -35,8 +35,25 @@ int op_rotr(void)
 		tmp = tmp->next;
 
 	n = tmp->n;
-	pop_back(&list);
-	push_front(&list, n);
+	pop_back();
+	push_front(n);
+
+	return (0);
+}
+
+/**
+ * switch_format - switches the format of the list
+ *
+ * @opcode: opcode to be executed
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int switch_format(char *opcode)
+{
+	if (_strcmp(opcode, "stack") == 0)
+		format = STACK;
+	else if (_strcmp(opcode, "queue") == 0)
+		format = QUEUE;
 
 	return (0);
 }

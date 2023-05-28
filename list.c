@@ -3,22 +3,19 @@
 /**
  * empty - checks if the list is empty
  *
- * @head: pointer to the head of the list
- *
  * Return: 1 if empty, 0 if not
  */
-int empty(stack_t **head)
+int empty(void)
 {
-	return (*head == NULL);
+	return (list_head == NULL && list_tail == NULL);
 }
 
 /**
  * push_back - adds a new node at the end of the list
  *
- * @head: pointer to the head of the list
  * @data: value to add to the list
  */
-void push_back(stack_t **head, int data)
+void push_back(int data)
 {
 	stack_t *new_node = (stack_t *)malloc(sizeof(stack_t));
 
@@ -28,30 +25,26 @@ void push_back(stack_t **head, int data)
 	new_node->n = data;
 	new_node->next = NULL;
 
-	if (*head == NULL)
+	if (list_head == NULL)
 	{
 		new_node->prev = NULL;
-		*head = new_node;
+		list_head = new_node;
+		list_tail = new_node;
 	}
 	else
 	{
-		stack_t *temp = *head;
-
-		while (temp->next != NULL)
-			temp = temp->next;
-
-		temp->next = new_node;
-		new_node->prev = temp;
+		new_node->prev = list_tail;
+		list_tail->next = new_node;
+		list_tail = new_node;
 	}
 }
 
 /**
  * push_front - adds a new node at the beginning of the list
  *
- * @head: pointer to the head of the list
  * @data: value to add to the list
  */
-void push_front(stack_t **head, int data)
+void push_front(int data)
 {
 	stack_t *new_node = (stack_t *)malloc(sizeof(stack_t));
 
@@ -59,67 +52,67 @@ void push_front(stack_t **head, int data)
 		return;
 
 	new_node->n = data;
+	new_node->next = list_head;
 	new_node->prev = NULL;
 
-	if (*head == NULL)
+	if (list_head == NULL)
 	{
-		new_node->next = NULL;
-		*head = new_node;
+		list_head = new_node;
+		list_tail = new_node;
 	}
 	else
 	{
-		new_node->next = *head;
-		(*head)->prev = new_node;
-		*head = new_node;
+		list_head->prev = new_node;
+		list_head = new_node;
 	}
 }
 
 /**
  * pop_back - removes the last element of the list
- *
- * @head: pointer to the head of the list
  */
-void pop_back(stack_t **head)
+void pop_back(void)
 {
-	if (*head == NULL)
+	if (list_head == NULL)
 	{
 		return;
 	}
 
-	if ((*head)->next == NULL)
+	if (list_head == list_tail)
 	{
-		free(*head);
-		*head = NULL;
+		free(list_head);
+		list_head = NULL;
+		list_tail = NULL;
 	}
 	else
 	{
-		stack_t *temp = *head;
+		stack_t *temp = list_tail;
 
-		while (temp->next != NULL)
-			temp = temp->next;
-
-		temp->prev->next = NULL;
+		list_tail = list_tail->prev;
+		list_tail->next = NULL;
 		free(temp);
 	}
 }
 
 /**
  * pop_front - removes the first element of the list
- *
- * @head: pointer to the head of the list
  */
-void pop_front(stack_t **head)
+void pop_front(void)
 {
-	stack_t *temp;
-
-	if (*head == NULL)
+	if (list_head == NULL)
 		return;
 
-	temp = *head;
+	if (list_head == list_tail)
+	{
+		free(list_head);
+		list_head = NULL;
+		list_tail = NULL;
+	}
+	else
+	{
+		stack_t *temp = list_head;
 
-	*head = (*head)->next;
-	if (*head != NULL)
-		(*head)->prev = NULL;
-
-	free(temp);
+		list_head = list_head->next;
+		list_head->prev = NULL;
+		free(temp);
+	}
 }

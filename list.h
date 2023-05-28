@@ -4,6 +4,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#define STACK 0
+#define QUEUE 1
+
+extern int format;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -20,15 +25,18 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
+extern stack_t *list_head;
+extern stack_t *list_tail;
+
 /* stack and queue functions */
-int empty(stack_t **head);
-void push_back(stack_t **head, int data);
-void push_front(stack_t **head, int data);
-void pop_back(stack_t **head);
-void pop_front(stack_t **head);
-int front(stack_t **head);
-int back(stack_t **head);
-void free_list(stack_t **head);
+int empty(void);
+void push_back(int data);
+void push_front(int data);
+void pop_back(void);
+void pop_front(void);
+int front(void);
+int back(void);
+void free_list(void);
 
 /**
  * struct instruction_s - opcode and its function

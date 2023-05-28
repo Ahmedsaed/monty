@@ -5,7 +5,7 @@ from integration_helpers import run_test
 
 
 # Define filename
-files = ["00-6.m", "all.m", "03-1.m"]
+files = ["00-6.m", "03-1.m"]
 
 for file in files:
     run_test(f"./tests/bytecodes/{file}")

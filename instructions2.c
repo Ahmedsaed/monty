@@ -12,40 +12,40 @@ int math_operations(char *opcode)
 {
 	int result = 0;
 
-	if (list == NULL || list->next == NULL)
+	if (list_head == NULL || list_head->next == NULL)
 	{
 		error_short_stack(opcode);
 		return (-1);
 	}
 
 	if (_strcmp(opcode, "add") == 0)
-		result = list->n + list->next->n;
+		result = list_head->n + list_head->next->n;
 	else if (_strcmp(opcode, "sub") == 0)
-		result = list->next->n - list->n;
+		result = list_head->next->n - list_head->n;
 	else if (_strcmp(opcode, "div") == 0)
 	{
-		if (list->n == 0)
+		if (list_head->n == 0)
 		{
 			error_div_zero();
 			return (-1);
 		}
-		result = list->next->n / list->n;
+		result = list_head->next->n / list_head->n;
 	}
 	else if (_strcmp(opcode, "mul") == 0)
-		result = list->n * list->next->n;
+		result = list_head->n * list_head->next->n;
 	else if (_strcmp(opcode, "mod") == 0)
 	{
-		if (list->n == 0)
+		if (list_head->n == 0)
 		{
 			error_div_zero();
 			return (-1);
 		}
-		result = list->next->n % list->n;
+		result = list_head->next->n % list_head->n;
 	}
 
-	pop_front(&list);
-	pop_front(&list);
-	push_front(&list, result);
+	pop_front();
+	pop_front();
+	push_front(result);
 
 	return (0);
 }
@@ -59,20 +59,20 @@ int op_pchar(void)
 {
 	char *c;
 
-	if (list == NULL)
+	if (list_head == NULL)
 	{
 		error_short_stack("pchar");
 		return (-1);
 	}
 
-	if (list->n < 0 || list->n > 127)
+	if (list_head->n < 0 || list_head->n > 127)
 	{
 		error_pchar();
 		return (-1);
 	}
 
 	c = malloc(sizeof(char) * 3);
-	c[0] = list->n;
+	c[0] = list_head->n;
 	c[1] = '\n';
 	c[2] = '\0';
 
@@ -89,7 +89,7 @@ int op_pchar(void)
  */
 int op_pstr(void)
 {
-	stack_t *tmp = list;
+	stack_t *tmp = list_head;
 	char *c;
 
 	while (tmp != NULL && tmp->n > 0 && tmp->n <= 127)

@@ -19,7 +19,10 @@ int op_push(char *value)
 
 	n = atoi(value);
 
-	push_front(&list, n);
+	if (format == STACK)
+		push_front(n);
+	else if (format == QUEUE)
+		push_back(n);
 
 	return (0);
 }
@@ -31,7 +34,7 @@ int op_push(char *value)
  */
 int op_pall(void)
 {
-	stack_t *current = list;
+	stack_t *current = list_head;
 
 	while (current != NULL)
 	{
@@ -55,13 +58,13 @@ int op_pint(void)
 {
 	char *str;
 
-	if (list == NULL)
+	if (list_head == NULL)
 	{
 		error_pint();
 		return (-1);
 	}
 
-	str = _itoa(front(&list));
+	str = _itoa(front());
 	print_str(str);
 	print_str("\n");
 
@@ -76,13 +79,13 @@ int op_pint(void)
  */
 int op_pop(void)
 {
-	if (list == NULL)
+	if (list_head == NULL)
 	{
 		error_pop();
 		return (-1);
 	}
 
-	pop_front(&list);
+	pop_front();
 
 	return (0);
 }
@@ -96,19 +99,19 @@ int op_swap(void)
 {
 	int n1, n2;
 
-	if (list == NULL || list->next == NULL)
+	if (list_head == NULL || list_head->next == NULL)
 	{
 		error_short_stack("swap");
 		return (-1);
 	}
 
-	n1 = front(&list);
-	pop_front(&list);
-	n2 = front(&list);
-	pop_front(&list);
+	n1 = front();
+	pop_front();
+	n2 = front();
+	pop_front();
 
-	push_front(&list, n1);
-	push_front(&list, n2);
+	push_front(n1);
+	push_front(n2);
 
 	return (0);
 }

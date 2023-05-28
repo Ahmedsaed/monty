@@ -2,7 +2,9 @@
 
 /* global variables*/
 int line_number = 1;
-stack_t *list = NULL;
+int format = STACK;
+stack_t *list_head = NULL;
+stack_t *list_tail = NULL;
 
 /* helper functions */
 int run_instruction(char *line_buffer);
@@ -42,7 +44,7 @@ int main(int argc, char *argv[])
 	}
 
 	free(line_buffer);
-	free_list(&list);
+	free_list();
 	close(fd);
 	return (rn);
 }
@@ -81,6 +83,8 @@ int run_instruction(char *line_buffer)
 		rn = 0;
 	else if (_strcmp(opcode, "rotr") == 0 || _strcmp(opcode, "rotl") == 0)
 		rn = rotation_operations(opcode);
+	else if (_strcmp(opcode, "queue") == 0 || _strcmp(opcode, "stack") == 0)
+		rn = switch_format(opcode);
 	else
 		rn = error_instruction(opcode);
 

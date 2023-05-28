@@ -1,55 +1,43 @@
 #include "list.h"
+#include "string.h"
 
 /**
- * front - returns the front element of the list
+ * front - returns the value of the first element in the list
  *
- * @head: pointer to the head of the list
- *
- * Return: value of the front element
+ * Return: value of the first element
  */
-int front(stack_t **head)
+int front(void)
 {
-	if (*head == NULL)
+	if (list_head != NULL)
+		return (list_head->n);
+	else
 		return (-1);
-
-	return ((*head)->n);
 }
 
 /**
- * back - returns the back element of the list
+ * back - returns the value of the last element in the list
  *
- * @head: pointer to the head of the list
- *
- * Return: value of the back element
+ * Return: value of the last element
  */
-int back(stack_t **head)
+int back(void)
 {
-	stack_t *temp;
-
-	if (*head == NULL)
+	if (list_tail != NULL)
+		return (list_tail->n);
+	else
 		return (-1);
-
-	temp = *head;
-
-	while (temp->next != NULL)
-		temp = temp->next;
-
-	return (temp->n);
 }
 
 /**
  * free_list - frees a list_t list
- *
- * @head: pointer to the head of the list
  */
-void free_list(stack_t **head)
+void free_list(void)
 {
 	stack_t *temp;
 
-	while (*head != NULL)
+	while (list_head != NULL)
 	{
-		temp = *head;
-		*head = (*head)->next;
+		temp = list_head;
+		list_head = (list_head)->next;
 		free(temp);
 	}
 }

@@ -15,5 +15,6 @@ int rotation_operations(char *opcode);
 
 int op_rotr(void);
 int op_rotl(void);
+int switch_format(char *opcode);
 
 #endif /* INSTRUCTIONS_H */
