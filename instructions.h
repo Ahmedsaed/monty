@@ -4,5 +4,6 @@
 int op_push(char *value);
 int op_pall(void);
 int op_pint(void);
+int op_pop(void);
 
 #endif /* INSTRUCTIONS_H */

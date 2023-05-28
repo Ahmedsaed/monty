@@ -68,3 +68,21 @@ int op_pint(void)
 	free(str);
 	return (0);
 }
+
+/**
+ * op_pop - removes the top element of the stack
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int op_pop(void)
+{
+	if (stack == NULL)
+	{
+		error_pop();
+		return (-1);
+	}
+
+	pop_front(&stack);
+
+	return (0);
+}
