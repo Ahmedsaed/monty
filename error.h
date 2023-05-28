@@ -10,5 +10,6 @@ void error_pint(void);
 
 void error_pop(void);
 void error_short_stack(char *opcode);
+void error_div_zero(void);
 
 #endif /* ERROR_H */

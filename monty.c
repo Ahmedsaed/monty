@@ -75,8 +75,10 @@ int run_instruction(char *line_buffer)
 		rn = op_pop();
 	else if (_strcmp(opcode, "swap") == 0)
 		rn = op_swap();
-	else if (_strcmp(opcode, "add") == 0)
-		rn = op_add();
+	else if (_strcmp(opcode, "add") == 0 || _strcmp(opcode, "sub") == 0 ||
+		_strcmp(opcode, "div") == 0 || _strcmp(opcode, "mul") == 0 ||
+		_strcmp(opcode, "mod") == 0)
+		rn = op_cal(opcode);
 	else if (_strcmp(opcode, "nop") == 0)
 		rn = 0;
 	else

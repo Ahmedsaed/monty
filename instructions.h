@@ -6,6 +6,6 @@ int op_pall(void);
 int op_pint(void);
 int op_pop(void);
 int op_swap(void);
-int op_add(void);
+int op_cal(char *opcode);
 
 #endif /* INSTRUCTIONS_H */
