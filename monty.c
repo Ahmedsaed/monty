@@ -34,11 +34,8 @@ int main(int argc, char *argv[])
 	{
 		if (_getline(&line_buffer, &line_size, fd) != -1)
 		{
-			if (run_instruction(line_buffer) == -1)
-			{
+			if (rn != 1 && run_instruction(line_buffer) == -1)
 				rn = EXIT_FAILURE;
-				break;
-			}
 		}
 		else
 			break;
@@ -46,6 +43,7 @@ int main(int argc, char *argv[])
 
 	free(line_buffer);
 	free_list(&list);
+	close(fd);
 	return (rn);
 }
 

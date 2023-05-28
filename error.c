@@ -19,11 +19,15 @@ void error_file(char *file)
  */
 void error_instruction(char *opcode)
 {
+	char *s = _itoa(line_number);
+
 	print_err("L");
-	print_err(_itoa(line_number));
+	print_err(s);
 	print_err(": unknown instruction ");
 	print_err(opcode);
 	print_err("\n");
+
+	free(s);
 }
 
 /**
