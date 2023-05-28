@@ -5,6 +5,6 @@
 #include "../list.h"
 
 int line_number = 1;
-stack_t *stack = NULL;
+stack_t *list = NULL;
 
 #endif /* TEST_H */

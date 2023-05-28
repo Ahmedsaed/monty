@@ -36,3 +36,20 @@ int back(stack_t **head)
 
 	return (temp->n);
 }
+
+/**
+ * free_list - frees a list_t list
+ *
+ * @head: pointer to the head of the list
+ */
+void free_list(stack_t **head)
+{
+	stack_t *temp;
+
+	while (*head != NULL)
+	{
+		temp = *head;
+		*head = (*head)->next;
+		free(temp);
+	}
+}

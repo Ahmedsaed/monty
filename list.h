@@ -28,6 +28,7 @@ void pop_back(stack_t **head);
 void pop_front(stack_t **head);
 int front(stack_t **head);
 int back(stack_t **head);
+void free_list(stack_t **head);
 
 /**
  * struct instruction_s - opcode and its function

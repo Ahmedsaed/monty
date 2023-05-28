@@ -16,7 +16,7 @@
 
 /* global variables */
 extern int line_number;
-extern stack_t *stack;
+extern stack_t *list;
 
 /* file functions */
 int process_file(char *file, int *fd);

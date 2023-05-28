@@ -2,7 +2,7 @@
 
 /* global variables*/
 int line_number = 1;
-stack_t *stack = NULL;
+stack_t *list = NULL;
 
 /* helper functions */
 int run_instruction(char *line_buffer);
@@ -45,6 +45,7 @@ int main(int argc, char *argv[])
 	}
 
 	free(line_buffer);
+	free_list(&list);
 	return (rn);
 }
 

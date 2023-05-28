@@ -94,10 +94,10 @@ check_style:
 
 check_memory:
 	@$(MAKE) announce MESSAGE="Checking memory leaks"
-	(valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=1 \
-	./$(EXECUTABLE) $(TEST_DIR)/bytecodes/all.m > ${TMP_DIR}/$$file.vg 2>&1)  && \
+	(valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --track-origins=yes \
+	-s --error-exitcode=1 ./$(EXECUTABLE) $(TEST_DIR)/bytecodes/all.m > ${TMP_DIR}/all.vg 2>&1)  && \
 	(make announce MESSAGE="No memory leaks found" && exit 0) || \
-	(echo "Error: memory leak found" && cat ${TMP_DIR}/$$file.vg && exit 1) \
+	(echo "Error: memory leak found" && cat ${TMP_DIR}/all.vg && exit 1) \
 
 setup_stderred:
 	git clone https://github.com/sickill/stderred.git $(TMP_DIR)/stderred
