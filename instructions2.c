@@ -130,3 +130,22 @@ int print_operations(char *opcode)
 
 	return (rn);
 }
+
+/**
+ * rotation_operations - preform rotation operations on the stack
+ *
+ * @opcode: opcode to be executed
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int rotation_operations(char *opcode)
+{
+	int rn = 0;
+
+	if (_strcmp(opcode, "rotl") == 0)
+		rn = op_rotl();
+	else if (_strcmp(opcode, "rotr") == 0)
+		rn = op_rotr();
+
+	return (rn);
+}

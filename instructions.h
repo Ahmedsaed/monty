@@ -11,5 +11,9 @@ int math_operations(char *opcode);
 int op_pchar(void);
 int op_pstr(void);
 int print_operations(char *opcode);
+int rotation_operations(char *opcode);
+
+int op_rotr(void);
+int op_rotl(void);
 
 #endif /* INSTRUCTIONS_H */

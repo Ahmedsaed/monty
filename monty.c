@@ -79,6 +79,8 @@ int run_instruction(char *line_buffer)
 		rn = math_operations(opcode);
 	else if (_strcmp(opcode, "nop") == 0 || opcode[0] == '#')
 		rn = 0;
+	else if (_strcmp(opcode, "rotr") == 0 || _strcmp(opcode, "rotl") == 0)
+		rn = rotation_operations(opcode);
 	else
 		rn = error_instruction(opcode);
 
