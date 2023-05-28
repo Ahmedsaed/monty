@@ -80,3 +80,29 @@ int op_pchar(void)
 	free(c);
 	return (0);
 }
+
+/**
+ * op_pstr - prints the string starting at the top of the stack
+ *
+ * Return: 0 on success, -1 on failure
+ */
+int op_pstr(void)
+{
+	stack_t *tmp = list;
+	char *c;
+
+	while (tmp != NULL && tmp->n > 0 && tmp->n <= 127)
+	{
+		c = malloc(sizeof(char) * 2);
+		c[0] = tmp->n;
+		c[1] = '\0';
+
+		print_str(c);
+
+		free(c);
+		tmp = tmp->next;
+	}
+
+	print_str("\n");
+	return (0);
+}

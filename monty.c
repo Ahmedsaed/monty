@@ -82,6 +82,8 @@ int run_instruction(char *line_buffer)
 		rn = 0;
 	else if (_strcmp(opcode, "pchar") == 0)
 		rn = op_pchar();
+	else if (_strcmp(opcode, "pstr") == 0)
+		rn = op_pstr();
 	else
 	{
 		error_instruction(opcode);
