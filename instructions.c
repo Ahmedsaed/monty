@@ -17,7 +17,7 @@ int op_push(char *value)
 		return (-1);
 	}
 
-	n = atoi(value);
+	n = _atoi(value);
 
 	if (format == STACK)
 		push_front(n);

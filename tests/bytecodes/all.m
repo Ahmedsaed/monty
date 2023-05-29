@@ -5,7 +5,7 @@ pint
 push 3
 pint
 push 1
-push 2
+# push 2
 push 3
 pall
 push 1 2 3
@@ -63,3 +63,5 @@ queue
 push 11111
 add
 pall
+# this is amazing
+push 1 # just push 1 to the stack

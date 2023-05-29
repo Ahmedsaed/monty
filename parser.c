@@ -23,16 +23,13 @@ void parse_instruction(char *line, char **opcode, char **value)
 			if (len)
 			{
 				arg[len] = '\0';
+				len = 0;
 				if (*opcode == NULL)
 					*opcode = _strdup(arg);
 				else if (*value == NULL)
 					*value = _strdup(arg);
 				else
-				{
-					len = 0;
 					break;
-				}
-				len = 0;
 			}
 		}
 		else
@@ -44,7 +41,7 @@ void parse_instruction(char *line, char **opcode, char **value)
 		arg[len] = '\0';
 		if (*opcode == NULL)
 			*opcode = _strdup(arg);
-		else
+		else if (*value == NULL)
 			*value = _strdup(arg);
 		len = 0;
 	}
