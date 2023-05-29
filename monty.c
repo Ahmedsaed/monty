@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
 		{
 			if (rn != EXIT_FAILURE && run_instruction(line_buffer) == -1)
 				rn = EXIT_FAILURE;
+			line_number++;
 		}
 		else
 			break;
@@ -92,6 +93,5 @@ int run_instruction(char *line_buffer)
 	if (value != NULL)
 		free(value);
 
-	line_number++;
 	return (rn);
 }
