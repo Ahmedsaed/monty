@@ -6,7 +6,7 @@
  * @file: the path to the file
  * @fd: the file descriptor to update
  *
- * Return: 0 on sucess, otherwise error code
+ * Return: 0 on success, otherwise error code
  */
 int process_file(char *file, int *fd)
 {

@@ -1,4 +1,5 @@
 #include "list.h"
+#include "monty.h"
 
 /**
  * empty - checks if the list is empty
@@ -20,7 +21,7 @@ void push_back(int data)
 	stack_t *new_node = (stack_t *)malloc(sizeof(stack_t));
 
 	if (new_node == NULL)
-		return;
+		error_malloc();
 
 	new_node->n = data;
 	new_node->next = NULL;
@@ -49,7 +50,7 @@ void push_front(int data)
 	stack_t *new_node = (stack_t *)malloc(sizeof(stack_t));
 
 	if (new_node == NULL)
-		return;
+		error_malloc();
 
 	new_node->n = data;
 	new_node->next = list_head;
