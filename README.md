@@ -2,12 +2,12 @@
 
 This is a project developed as part of [ALX SE Program](https://www.alxafrica.com/). It is an interpreter for Monty Bytecode files. The Monty language is a simple programming language that uses stack and queue data structures for its operations. This project was written in C.
 
-<!-- ![Demo](https://user-images.githubusercontent.com/37080003/1234567890/example.gif) -->
-
 ## Interactive Interpreter
 (Branch: `interactive-interpreter`)
 
 In the `interactive-interpreter` branch, an interactive mode has been implemented, allowing users to execute Monty instructions directly from the command line without the need for a Monty Bytecode file. This interactive interpreter provides a prompt where users can type Monty instructions and see the results immediately.
+
+[Screencast from 2023-06-01 14-52-10.webm](https://github.com/Ahmedsaed/monty/assets/37080003/fdef1653-6274-4259-b3cf-d03a89ffed7a)
 
 To use the interactive interpreter, follow these steps:
 
