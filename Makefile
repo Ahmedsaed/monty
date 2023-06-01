@@ -1,6 +1,6 @@
 APPLICATION := monty
 
-# Directories 
+# Directories
 BUILD_DIR := build
 SRC_DIR := .
 INC_DIR := .
@@ -41,7 +41,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 run:
 	@$(MAKE) announce MESSAGE="Running $(APPLICATION)"
-	@./$(EXECUTABLE) $(TEST_DIR)/bytecodes/00.m
+	@./$(EXECUTABLE)
 
 integration_tests: $(INTEGRATION_TESTS_FILES)
 
